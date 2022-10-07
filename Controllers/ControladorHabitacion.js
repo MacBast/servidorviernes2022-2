@@ -1,14 +1,18 @@
+import {ServicioHabitacion} from '../services/ServicioHabitacion.js'
+
 export class ControladorHabitacion{
 
     constructor(){}
 
-    buscarHabitaciones(request,response){
+    async buscarHabitaciones(request,response){
+
+        let objetoServicioHabitacion=new ServicioHabitacion()
 
         try{
 
             response.status(200).json({
                 "mensaje":"exito en la consulta",
-                "datos":"AQUI VAN LOS DATOS DE HABITACIOENES",
+                "datos":await objetoServicioHabitacion.buscarHabitaciones(),
             })
 
         }catch(error){
@@ -43,12 +47,13 @@ export class ControladorHabitacion{
         }
     }
 
-    registrarHabitacion(request,response){
+    async registrarHabitacion(request,response){
 
         let datosHabitacion=request.body
+        let objetoServicioHabitacion=new ServicioHabitacion()
         
         try{
-
+            await objetoServicioHabitacion.agregarHabitacionEnBD(datosHabitacion)
             response.status(200).json({
                 "mensaje":"exito registrando habitacion",
                 "datos":null
