@@ -28,13 +28,14 @@ export class ControladorHabitacion{
         
     }
 
-    buscarHabitacionPorId(request,response){
+    async buscarHabitacionPorId(request,response){
         let id=request.params.idHabitacion //recibo id de la peticion
+        let objetoServicioHabitacion=new ServicioHabitacion()
         try{
 
             response.status(200).json({
                 "mensaje":"exito en la consulta "+id,
-                "datos":"AQUI VAN LOS DATOS DE la habitacion buscada por id",
+                "datos":await objetoServicioHabitacion.buscarHabitacionPorId(id),
             })
 
         }catch(error){
@@ -68,16 +69,21 @@ export class ControladorHabitacion{
         }
     }
 
-    editarHabitacion(request,response){
+    async editarHabitacion(request,response){
+
         let id = request.params.idHabitacion
         let datosHabitacion = request.body
-        console.log(id,datosHabitacion)
+
+        let objetoServicioHabitacion=new ServicioHabitacion()
+       
 
         try{
 
+            await objetoServicioHabitacion.editarHabitacion(id,datosHabitacion)
+
             response.status(200).json({
                 "mensaje":"exito editando"+id,
-                "datos":datosHabitacion,
+                "datos":null,
             })
 
         }catch(error){
