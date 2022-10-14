@@ -2,7 +2,7 @@ import {modeloHabitacion} from '../Models/ModeloHabitacion.js'
 
 export class ServicioHabitacion{
 
-    //aqui programo metodos para acda una de las
+    //aqui programo metodos para cada una de las
     //consultas que quiero hacer en bd
 
     async buscarHabitaciones(){
